@@ -1,0 +1,25 @@
+<form class="container form-inline"  >
+
+  <div class="form-group col-md-12 myField">
+      <label for="totalBudget" class="col-md-4">Total Budget</label>
+      <input type="text" class="form-control col-md-4" name="budget" [(ngModel)]="budget" > 
+      <button type="button" class="btn btn-primary settingsButton" (click)="onUpdate()">Update</button>  
+  </div>
+
+  <div class="form-group col-md-12 myField">
+    <label for="category" class="col-md-4">Categories</label>
+    <input type="text" class="form-control col-md-4"  name="category"  [(ngModel)]="category"> 
+    <button type="button" class="btn btn-primary settingsButton" (click)="addCategory()">Add</button> 
+</div>
+ 
+<div class=" col-md-12">
+  <ul>
+    <li *ngFor="let category of allCategories">
+      {{ category.name }}
+    </li>
+  </ul>
+</div>
+
+</form>
+
+<!-- <p>{{(allCategories| async)|json }}</p> -->

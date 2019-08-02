@@ -1,0 +1,37 @@
+<div class="myField">
+  <a routerLink="/addExpense" [ngClass]="{'activeLink':currentRoute === '/addExpense'}"><button class="btn btn-primary">Add Expense</button></a>
+</div>
+
+<div  *ngIf="expensesList?.length!=0">
+<div>
+    <table class="table table-bordered myField">
+        <thead class="thead-inverse">
+          <tr>     
+            <th>ITEM NAME</th>
+            <th>CATEGORY NAME</th>
+            <th>AMOUNT</th>
+            <th>EXPENSES DATE</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead> 
+
+        <tbody>
+          <tr *ngFor="let expense of expensesList ">
+            
+            <td><span  [class.inactive]="!expense.isActive">{{ expense.itemName }}</span></td>
+            <td><span  [class.inactive]="!expense.isActive">{{ expense.categoryName }}</span></td>
+            <td>
+              <span  class="badge badge-success"  [class.inactive]="!expense.isActive" >{{ expense.amount }}</span>  
+            </td>
+            <td><span  [class.inactive]="!expense.isActive">{{ expense.expenseDate |date }}</span></td>
+            <td><button class="btn btn-primary" (click)="edit(expense)"  >EDIT</button></td>
+            <td>
+              <button class="btn btn-primary" (click)="remove(expense)" *ngIf="expense.isActive">Delete</button>
+              <button class="btn btn-primary" (click)="undoRemove(expense)" *ngIf="!expense.isActive">UNDO</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</div>
